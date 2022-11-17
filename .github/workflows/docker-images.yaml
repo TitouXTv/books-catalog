@@ -11,8 +11,10 @@ on:
 jobs:
   build-docker:
     runs-on: ubuntu-latest
+    env:
+      MICRO_SERVICE_VERSION: "3.0"
     steps:
     - name: Checkout sources
       uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker.io/titouxtv/books-catalog:3.0
+      run: docker build . --file Dockerfile --tag docker.io/titouxtv/books-catalog:3.0${{ env.MICRO_SERVICE_VERSION }}-${GITHUB_RUN_NUMBER}
